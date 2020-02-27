@@ -1,0 +1,143 @@
+<div id="top" class="row">
+
+    <div class="col-sm-3">
+        <h2>Periodos</h2>
+    </div>
+
+    <div class="col-sm-6">
+
+        <input type="button" value="Pesquisar" class="btn btn-primary h2" ng-click="listarPeriodos()"/>
+                
+    </div>
+
+    <div class="col-sm-3">
+        <a class="btn btn-success h2" data-toggle="modal" data-target="#save-modal">Novo Período</a>
+    </div>
+</div>
+
+<div class="table-responsive col-md-12">
+    <table class="table table-hover table-bordered" id="tabelaPrincipal" cellspacing="0" cellpadding="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Data Início</th>
+                <th>Data Fim</th>
+                
+                <th class="actions">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="periodo in listaPeriodos">
+                <td>{{periodo.id}}</td>
+                <td>{{periodo.nome}}</td>
+                <td>{{periodo.dataInicio}}</td>
+                <td>{{periodo.dataFim}}</td>
+
+                <td class="actions">
+                    <a class="btn btn-warning btn-xs"   data-toggle="modal" data-target="#update-modal" ng-click="copyPeriodo(periodo)" >Editar</a>
+                    <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" ng-click="copyPeriodo(periodo)">Excluir</a>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalLabel">Excluir Período</h4>
+                </div>
+                <div class="modal-body">
+                    Deseja realmente excluir este período?
+                </div>
+                <div class="modal-footer">
+    
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="deletePeriodo(periodo.id)">Sim</button>
+    
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="dialogRef.close(false)" ng-click="resetPeriodo()">N&atilde;o</button>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    <div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalLabel">Atualizar período de ID: {{periodo.id}}</h4>
+                </div>
+                <div class="modal-body">
+                            
+                    <div class="form-group">
+                        <label for="inputDescricao">Nome</label>
+                        <input type="text" class="form-control" id="inputDescricao" ng-model="periodo.nome">
+                        <br>
+                        <div class="form-group">
+                            <label for="inputDataInicio">Data Início</label>
+                            
+                            <input type="text" class="form-control" id="inputDataInicio" ng-model="periodo.dataInicio">
+                                                        
+                            <label for="inputDataFim">Data Fim</label>
+                            
+                            <input type="text" class="form-control" id="inputDataFim" ng-model="periodo.dataFim">
+                        </div>
+                                                                            
+                    </div>
+                    
+                </div>
+
+                <div class="modal-footer">
+    
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="atualizarPeriodo()">Atualizar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetPeriodo()">Cancelar</button>
+    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="save-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalLabel">Adicionar novo Período</h4>
+                </div>
+                <div class="modal-body">
+                            
+                    <div class="form-group">
+                        <label for="inputDescricao2">Nome</label>
+                        <input type="text" class="form-control" id="inputDescricao2" ng-model="periodo.nome">
+                        <br>
+                        <div class="form-group">
+                            <label for="inputDataInicio2">Data Início</label>
+                            
+                            <input type="text" class="form-control" id="inputDataInicio2" ng-model="periodo.dataInicio">
+                            
+                            
+                            <label for="inputDataFim2">Data Fim</label>
+                            
+                            <input type="text" class="form-control" id="inputDataFim2" ng-model="periodo.dataFim">
+                        </div>
+                                                                            
+                    </div>
+                    
+                </div>
+
+                <div class="modal-footer">
+    
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="salvarPeriodo()">Salvar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="dialogRef.close(false)" ng-click="resetPeriodo()">Cancelar</button>
+    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

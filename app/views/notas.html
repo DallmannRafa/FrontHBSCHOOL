@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="col-sm-9">
+        <div class="btn-group">
+            <label for="inputMateria">Selecione o Aluno</label>
+            <select id="AlunoSelector" class="form-control" ng-init="listarAlunos()" ng-model="aluno.id">
+                <option ng-repeat="aluno in listaAlunos" value="{{aluno.id}}">{{aluno.nome}}</option>
+            </select>
+            
+        </div>
+        <div class="btn-group">
+
+            <input type="button" value="Pesquisar" class="btn btn-primary h2" ng-click="listarBoletins(aluno.id)"/>
+                    
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <a class="btn btn-success h2" data-toggle="modal" data-target="#save-modal">Novo Boletim</a>
+    </div>
+</div>
+
+<br>
+<div class="table-responsive col-md-12">
+    <table class="table table-hover table-bordered" id="tabelaPrincipal" cellspacing="0" cellpadding="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Período</th>
+                
+                <th class="actions">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="boletim in listaBoletins">
+                <td>{{boletim.id }}</td>
+                <td>{{boletim.periodo.nome }}</td>
+
+                <td class="actions">
+                    <a class="btn btn-warning btn-xs" href="#/notasboletim" ng-click="salvaid(boletim.id)">Notas</a>
+                    <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" ng-click="copyBoletim(boletim)"
+                        >Excluir</a>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalLabel">Excluir Boletim</h4>
+                </div>
+                <div class="modal-body">
+                    Deseja realmente excluir este boletim?
+                </div>
+                <div class="modal-footer">
+    
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="deleteBoletim(boletim.id)">Sim</button>
+    
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="dialogRef.close(false)" ng-click="resetBoletim()">N&atilde;o</button>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    <div class="modal fade" id="save-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalLabel">Adicionar novo Boletim</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="btn-group">
+                        <label for="inputMateria" ng-model="aluno.id">Para o Aluno</label>
+                        <select id="AlunoSelector" class="form-control" ng-init="listarAlunos()" >
+                            <option ng-repeat="aluno in listaAlunos" value="{{aluno.id}}">{{aluno.nome}}</option>
+                        </select>
+                        
+                    </div>
+
+                    <div class="btn-group">
+                        <label for="inputMateria">Selecione o Período</label>
+                        <select id="PeriodoSelector" class="form-control" ng-init="listarPeriodos()" ng-model="periodo.id">
+                            <option ng-repeat="periodo in listaPeriodos" value="{{periodo.id}}">{{periodo.nome}}</option>
+                        </select>
+                        
+                    </div>
+                    
+                </div>
+
+                <div class="modal-footer">
+    
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="salvarBoletimByUrl(aluno.id, periodo.id)">Salvar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="dialogRef.close(false)" ng-click="resetPeriodo()">Cancelar</button>
+    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

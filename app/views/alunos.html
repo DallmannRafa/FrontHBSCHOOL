@@ -1,0 +1,120 @@
+<div id="top" class="row">
+
+    <div class="col-sm-3">
+        <h2>Alunos</h2>
+    </div>
+
+    <div class="col-sm-6">
+
+        <input type="button" value="Pesquisar" class="btn btn-primary h2" ng-click="listarAlunos()"/>
+                
+    </div>
+
+    <div class="col-sm-3">
+        <a class="btn btn-success h2" data-toggle="modal" data-target="#save-modal">Novo Aluno</a>
+    </div>
+</div>
+
+<div class="table-responsive col-md-12">
+    <table class="table table-hover table-bordered" id="tabelaPrincipal" cellspacing="0" cellpadding="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                
+                <th class="actions">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="aluno in listaAlunos">
+                <td>{{aluno.id }}</td>
+                <td>{{aluno.nome }}</td>
+
+                <td class="actions">
+                    <a class="btn btn-warning btn-xs"  data-toggle="modal" data-target="#update-modal" ng-click="copyAluno(aluno)"  >Editar</a>
+                    <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" ng-click="copyAluno(aluno)"
+                        >Excluir</a>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Modal -->
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalLabel">Excluir Aluno</h4>
+                </div>
+                <div class="modal-body">
+                    Deseja realmente excluir este aluno?
+                </div>
+                <div class="modal-footer">
+    
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="deleteAluno(aluno.id)">Sim</button>
+    
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="dialogRef.close(false)" ng-click="resetAluno()">N&atilde;o</button>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    <div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalLabel">Atualizar aluno de ID: {{aluno.id}}</h4>
+                </div>
+                <div class="modal-body">
+                            
+                    <div class="form-group">
+                        <label for="inputDescricao">Nome</label>
+                        <input type="text" class="form-control" id="inputDescricao" ng-model="aluno.nome">
+                        
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+    
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="atualizarAluno()">Atualizar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetAluno()">Cancelar</button>
+    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="save-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalLabel" >Adicionar novo aluno</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputNome">Nome</label>
+                        <input type="text" class="form-control" id="inputNome" placeholder="insira o nome do aluno" ng-model="aluno.nome">
+                        
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+    
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="salvarAluno()">Salvar</button>
+    
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="dialogRef.close(false)" ng-click="resetAluno()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+</div>

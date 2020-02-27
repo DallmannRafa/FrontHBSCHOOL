@@ -1,0 +1,117 @@
+<div id="top" class="row">
+
+    <div class="col-sm-3">
+        <h2>Matérias</h2>
+    </div>
+
+    <div class="col-sm-6">
+
+        <input type="button" value="Pesquisar" class="btn btn-primary h2" ng-click="listarMaterias()"/>
+                
+    </div>
+
+    <div class="col-sm-3">
+        <a href="despesas/novo" class="btn btn-success h2" data-toggle="modal" data-target="#save-modal">Nova Matéria</a>
+    </div>
+</div>
+
+<div class="table-responsive col-md-12">
+    <table class="table table-hover table-bordered" id="tabelaPrincipal" cellspacing="0" cellpadding="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                
+                <th class="actions">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="materia in listaMaterias">
+                <td>{{materia.id}}</td>
+                <td>{{materia.nome}}</td>
+
+                <td class="actions">
+                    <a class="btn btn-warning btn-xs" data-toggle="modal" data-target="#update-modal" ng-click="copyMateria(materia)">Editar</a>
+                    <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" ng-click="copyMateria(materia)"
+                        ng-click="deleteAluno(aluno.id)">Excluir</a>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalLabel">Excluir Matéria</h4>
+                </div>
+                <div class="modal-body">
+                    Deseja realmente excluir esta matéria?
+                </div>
+                <div class="modal-footer">
+    
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="deleteMateria(materia.id)">Sim</button>
+    
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="dialogRef.close(false)" ng-click="resetMateria()">N&atilde;o</button>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    <div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalLabel">Atualizar matéria de ID: {{materia.id}}</h4>
+                </div>
+                <div class="modal-body">
+                            
+                    <div class="form-group">
+                        <label for="inputDescricao">Nome</label>
+                        <input type="text" class="form-control" id="inputDescricao" ng-model="materia.nome">
+                        
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+    
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="atualizarMateria()">Atualizar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetMateria()">Cancelar</button>
+    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="save-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalLabel" >Adicionar nova Matéria</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputNome">Nome</label>
+                        <input type="text" class="form-control" id="inputNome" placeholder="insira o nome da matéria" ng-model="materia.nome">
+                        
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+    
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="salvarMateria()">Salvar</button>
+    
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="dialogRef.close(false)" ng-click="resetMateria()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</div>

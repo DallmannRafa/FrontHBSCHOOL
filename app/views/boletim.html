@@ -1,0 +1,26 @@
+
+<h1>Boletim</h1>
+<br>
+<br>
+<div>
+    <div class="btn-group">
+        <label for="inputMateria">Selecione o Aluno</label>
+        <select id="AlunoSelector" class="form-control" ng-init="listarAlunos()" ng-model="aluno.id">
+            <option ng-repeat="aluno in listaAlunos" value="{{aluno.id}}">{{aluno.nome}}</option>
+        </select>
+    </div>
+    <div class="btn-group">
+        <label for="inputMateria">Selecione o Período</label>
+        <select id="PeriodoSelector" class="form-control" ng-init="listarPeriodos()" ng-model="periodo.id">
+            <option ng-repeat="periodo in listaPeriodos" value="{{periodo.id}}">{{periodo.nome}}</option>
+        </select>
+        
+    </div>
+    <div class="btn-group">
+        <div class="col-sm-6">
+
+            <input type="button" value="Gerar Boletim" class="btn btn-primary h2" ng-click="geraBoletim(aluno.id, periodo.id)"/>
+                    
+        </div>
+    </div>
+</div>
