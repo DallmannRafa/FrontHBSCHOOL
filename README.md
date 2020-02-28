@@ -19,6 +19,7 @@ Iniciando o Projeto:
 <li>Inicie o projeto no IntelliJ com os comandos "docker-compose up" e em seguida rodando o projeto</li>
 <li>Você precisará instalar a expansão Live Server para o VSCode para conseguir rodar a aplicação</li>
 
+
 Utilizando o Programa:
 <li>As telas Alunos, Matérias e Períodos funcionam para a manipulação dos mesmos. Nessas telas é possível realizar o cadastro a atualização a exclusão e a listagem de tais itens</li>
 <li>Na tela de Notas, você deve selecionar o aluno pelo qual deseja verificar as notas, em seguida será apresentada a lista de boletins registrados para tal aluno, você pode ainda adicionar um novo boletim ou excluir um já existente. Ao clicar em "Notas" você será redirecionado para a tela de notas vinculadas ao boletim, onde você poderá adicionar editar e deletar alguma nota desejada</li>
